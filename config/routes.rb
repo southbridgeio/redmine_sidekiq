@@ -1,6 +1,12 @@
 require 'sidekiq/web'
 require 'redmine_sidekiq/admin_constraint'
 
+begin
+  require 'sidekiq/cron/web'
+rescue LoadError
+  # Nothing
+end
+
 RedmineApp::Application.routes.draw do
   mount Sidekiq::Web => '/sidekiq', :constraints => RedmineSidekiq::AdminConstraint.new
 
