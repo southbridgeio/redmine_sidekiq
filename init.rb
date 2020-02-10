@@ -10,4 +10,8 @@ Redmine::Plugin.register :redmine_sidekiq do
   author 'ogom'
 
   menu :top_menu, :sidekiq, '/sidekiq', :if => Proc.new {User.current.admin}
+
+  project_module :redmine_sidekiq do
+    permission :manage_sidekiq, sidekiq: :index
+  end
 end
