@@ -1,5 +1,5 @@
 require 'sidekiq/web'
-require 'redmine_sidekiq/web_constraint'
+require './plugins/redmine_sidekiq/lib/redmine_sidekiq/web_constraint'
 
 begin
   require 'sidekiq/cron/web'

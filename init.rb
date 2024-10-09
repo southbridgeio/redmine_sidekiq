@@ -1,5 +1,5 @@
-require 'redmine_sidekiq/configure'
-require 'redmine_sidekiq/rails'
+require File.dirname(__FILE__) + '/lib/redmine_sidekiq/configure'
+require File.dirname(__FILE__) + '/lib/redmine_sidekiq/rails'
 
 Redmine::Plugin.register :redmine_sidekiq do
   name 'Redmine Sidekiq plugin'
