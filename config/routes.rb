@@ -1,5 +1,5 @@
 require 'sidekiq/web'
-require './plugins/redmine_sidekiq/lib/redmine_sidekiq/web_constraint'
+require 'redmine_sidekiq/admin_constraint'
 
 begin
   require 'sidekiq/cron/web'
@@ -8,7 +8,7 @@ rescue LoadError
 end
 
 RedmineApp::Application.routes.draw do
-  mount Sidekiq::Web => '/sidekiq', constraints: RedmineSidekiq::WebConstraint.new
+  mount Sidekiq::Web => '/sidekiq', :constraints => RedmineSidekiq::AdminConstraint.new
 
   match '/sidekiq/sandbox', to: 'sidekiq_sandbox#index', via: :get
   match '/sidekiq/sandbox/perform_async', to: 'sidekiq_sandbox#perform_async', via: :post
