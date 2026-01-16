@@ -1,5 +1,7 @@
-require File.dirname(__FILE__) + '/lib/redmine_sidekiq/configure'
-require File.dirname(__FILE__) + '/lib/redmine_sidekiq/rails'
+$LOAD_PATH.unshift "#{File.dirname(__FILE__)}/lib"
+
+require 'redmine_sidekiq/configure'
+require 'redmine_sidekiq/rails'
 
 Redmine::Plugin.register :redmine_sidekiq do
   name 'Redmine Sidekiq plugin'
@@ -10,8 +12,4 @@ Redmine::Plugin.register :redmine_sidekiq do
   author 'ogom'
 
   menu :top_menu, :sidekiq, '/sidekiq', :if => Proc.new {User.current.admin}
-
-  project_module :redmine_sidekiq do
-    permission :manage_sidekiq, sidekiq: :index
-  end
 end
